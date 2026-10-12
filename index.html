@@ -21,11 +21,13 @@
   body { margin:0; background:var(--bg); color:var(--text); font-family:'JetBrains Mono', monospace; line-height:1.6; transition:background .2s, color .2s; }
   .wrap { max-width:760px; margin:40px auto; padding:0 20px; }
   .topbar { display:flex; justify-content:space-between; align-items:center; }
-  .prompt { color:var(--muted); margin:0; }
+  .rolling { color:var(--heading); font-weight:700; margin:0; min-height:1.6em; transition:opacity .4s; font-size:1rem; }
+  .rolling.fade { opacity:0; }
   .theme-btn { background:var(--card); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 12px; font:inherit; font-size:.85rem; cursor:pointer; }
   .theme-btn:hover { border-color:var(--accent); }
   .head { display:flex; align-items:center; gap:18px; margin-top:12px; }
-  .avatar { width:72px; height:72px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.3rem; color:#fff; background:var(--accent); border:3px solid var(--gold); }
+  .avatar { width:72px; height:72px; border-radius:50%; flex-shrink:0; overflow:hidden; border:3px solid var(--gold); background:var(--accent); }
+  .avatar img { width:100%; height:100%; object-fit:cover; display:block; }
   .name { color:var(--heading); font-size:1.7rem; margin:0; font-weight:700; }
   .role { color:var(--muted); margin:6px 0 0; font-size:.92rem; }
   .email { color:var(--accent); margin:6px 0 0; font-size:.92rem; }
@@ -41,8 +43,9 @@
   .card b { color:var(--heading); display:block; margin-bottom:6px; }
   .card p { color:var(--muted); font-size:.84rem; margin:0; }
   .card .pill { margin-bottom:8px; }
+  .pill-link { display:inline-flex; align-items:center; gap:6px; color:#fff; padding:4px 10px; border-radius:6px; font-size:.82rem; font-weight:700; margin-bottom:8px; }
+  .pill-link img { width:16px; height:16px; filter:brightness(0) invert(1); }
   .intro { color:var(--muted); font-size:.9rem; }
-  .skill-bar { border-top:2px solid var(--border); }
   /* Modal */
   .modal { position:fixed; inset:0; background:var(--overlay); display:flex; align-items:center; justify-content:center; padding:20px; z-index:100; }
   .modal[hidden] { display:none; }
@@ -55,8 +58,6 @@
   .modal-box p { margin:0; }
   .modal-box ul { padding-left:20px; margin:0; }
   .meta { color:var(--gold); font-size:.82rem; margin:0 0 12px; }
-  .btn { display:inline-block; margin-top:18px; background:var(--accent); color:#fff; padding:8px 16px; border-radius:8px; text-decoration:none; font-size:.9rem; font-weight:700; }
-  .btn:hover { background:var(--accent-dark); }
   .footer { text-align:center; color:var(--muted); font-size:.82rem; border-top:2px solid var(--border); padding-top:24px; }
   @media (max-width:500px) { .name { font-size:1.3rem; } .avatar { width:58px; height:58px; } }
 </style>
@@ -65,12 +66,12 @@
 <div class="wrap">
 
   <div class="topbar">
-    <p class="prompt">$ whoami</p>
+    <p class="rolling" id="greeting">Selamat Datang</p>
     <button class="theme-btn" id="themeBtn">☀️ Light</button>
   </div>
 
   <div class="head">
-    <div class="avatar">TF</div>
+    <div class="avatar"><img src="foto.jpg" alt="Foto Thoriq Falatehan"></div>
     <div>
       <h1 class="name">Thoriq Falatehan</h1>
       <p class="role">Urban Transportation Enthusiast | Geographic Information System for Planner Researcher | Project Assistant</p>
@@ -119,12 +120,12 @@
   <section>
     <h2>LINKS</h2>
     <div class="grid">
-      <a class="card" href="https://linkedin.com/in/tfalatehan" target="_blank" rel="noopener"><span class="pill" style="background:#0a66c2">LinkedIn</span><p>Professional profile</p></a>
-      <a class="card" href="https://medium.com/@jiburutaru" target="_blank" rel="noopener"><span class="pill" style="background:#000">Medium</span><p>Writing &amp; articles</p></a>
-      <a class="card" href="https://instagram.com/jiburutaru" target="_blank" rel="noopener"><span class="pill" style="background:#e1306c">Instagram</span><p>Daily life &amp; fieldwork</p></a>
-      <a class="card" href="mailto:thoriqfalatehanworks@gmail.com"><span class="pill" style="background:#ea4335">Email</span><p>thoriqfalatehanworks@gmail.com</p></a>
-      <a class="card" href="https://drive.google.com/drive/folders/1Au_tHoVtMR741ttV0D9OWwOJSv--8FTg?usp=drive_link" target="_blank" rel="noopener"><span class="pill" style="background:#1a73e8">Google Drive</span><p>College &amp; Research files</p></a>
-      <a class="card" href="https://github.com/jiburutaru" target="_blank" rel="noopener"><span class="pill" style="background:#24292f">GitHub</span><p>Repositories &amp; open-source code</p></a>
+      <a class="card" href="https://linkedin.com/in/tfalatehan" target="_blank" rel="noopener"><span class="pill-link" style="background:#0a66c2"><img src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/linkedin.svg" alt="">LinkedIn</span><p>Professional profile</p></a>
+      <a class="card" href="https://medium.com/@jiburutaru" target="_blank" rel="noopener"><span class="pill-link" style="background:#000"><img src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/medium.svg" alt="">Medium</span><p>Writing &amp; articles</p></a>
+      <a class="card" href="https://instagram.com/jiburutaru" target="_blank" rel="noopener"><span class="pill-link" style="background:#e1306c"><img src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/instagram.svg" alt="">Instagram</span><p>Daily life &amp; fieldwork</p></a>
+      <a class="card" href="mailto:thoriqfalatehanworks@gmail.com"><span class="pill-link" style="background:#ea4335"><img src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/gmail.svg" alt="">Email</span><p>thoriqfalatehanworks@gmail.com</p></a>
+      <a class="card" href="https://drive.google.com/drive/folders/1Au_tHoVtMR741ttV0D9OWwOJSv--8FTg?usp=drive_link" target="_blank" rel="noopener"><span class="pill-link" style="background:#1a73e8"><img src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/googledrive.svg" alt="">Google Drive</span><p>College &amp; Research files</p></a>
+      <a class="card" href="https://github.com/jiburutaru" target="_blank" rel="noopener"><span class="pill-link" style="background:#24292f"><img src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/github.svg" alt="">GitHub</span><p>Repositories &amp; open-source code</p></a>
     </div>
   </section>
 
@@ -140,6 +141,23 @@
 </div>
 
 <script>
+  /* ====== TEKS SAPAAN BERPUTAR ====== */
+  const greetings = [
+    "Selamat Datang", "Welcome", "Bienvenue", "Willkommen", "Bienvenido",
+    "Bienvenida", "Benvenuto", "Benvenuta", "Bem-vindo", "Bem-vinda",
+    "Welkom", "Добро пожаловать", "Witaj", "Witamy"
+  ];
+  const greetEl = document.getElementById("greeting");
+  let gi = 0;
+  setInterval(() => {
+    greetEl.classList.add("fade");
+    setTimeout(() => {
+      gi = (gi + 1) % greetings.length;
+      greetEl.textContent = greetings[gi];
+      greetEl.classList.remove("fade");
+    }, 400);
+  }, 2200);
+
   /* ====== DATA FEATURED PROJECTS ====== */
   const projects = [
     {
