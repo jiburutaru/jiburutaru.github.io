@@ -82,4 +82,162 @@
   <section>
     <h2>TOOLS</h2>
     <div class="pills">
-      <span
+      <span style="background:#276dc3">R</span>
+      <span style="background:#4a90c8">RStudio</span>
+      <span style="background:#589632">QGIS</span>
+      <span style="background:#0079c1">ArcGIS</span>
+      <span style="background:#f4b400;color:#202124">Google Slides</span>
+      <span style="background:#4285f4">Google Docs</span>
+      <span style="background:#0f9d58">Spreadsheets</span>
+      <span style="background:#217346">Microsoft Excel</span>
+      <span style="background:#2b579a">Word</span>
+      <span style="background:#d24726">PowerPoint</span>
+      <span style="background:#00a8b5">Canva</span>
+      <span style="background:#a259ff">Figma</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>ABOUT</h2>
+    <ul class="goals">
+      <li>🔭 I'm currently working on Geographic Information System for Planner Practicum Assistant and Economic Development Area Project for Bandung Raya</li>
+      <li>🌱 I'm currently learning R Modelling for Spatial, especially for Forest Loss and Fragmentation Detection</li>
+      <li>👯 I'm looking to collaborate on Business Plan Competition, Essay Competition, and Paper Competition related to Urban Planning Topics</li>
+      <li>🤔 I'm looking for help with learning about AI for Geospatial Analysis, Urban Transportation and Economics</li>
+      <li>💬 Ask me about Geospatial Basics for Planner</li>
+      <li>📫 How to reach me: thoriqfalatehanworks@gmail.com</li>
+      <li>⚡ Fun fact: I do sleep 6 hr a day!</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>FEATURED PROJECTS</h2>
+    <p class="intro">Klik kartu untuk melihat detail.</p>
+    <div class="grid" id="projectGrid" style="margin-top:14px"></div>
+  </section>
+
+  <section>
+    <h2>LINKS</h2>
+    <div class="grid">
+      <a class="card" href="https://linkedin.com/in/tfalatehan" target="_blank" rel="noopener"><span class="pill" style="background:#0a66c2">LinkedIn</span><p>Professional profile</p></a>
+      <a class="card" href="https://medium.com/@jiburutaru" target="_blank" rel="noopener"><span class="pill" style="background:#000">Medium</span><p>Writing &amp; articles</p></a>
+      <a class="card" href="https://instagram.com/jiburutaru" target="_blank" rel="noopener"><span class="pill" style="background:#e1306c">Instagram</span><p>Daily life &amp; fieldwork</p></a>
+      <a class="card" href="mailto:thoriqfalatehanworks@gmail.com"><span class="pill" style="background:#ea4335">Email</span><p>thoriqfalatehanworks@gmail.com</p></a>
+      <a class="card" href="https://drive.google.com/drive/folders/1Au_tHoVtMR741ttV0D9OWwOJSv--8FTg?usp=drive_link" target="_blank" rel="noopener"><span class="pill" style="background:#1a73e8">Google Drive</span><p>College &amp; Research files</p></a>
+      <a class="card" href="https://github.com/jiburutaru" target="_blank" rel="noopener"><span class="pill" style="background:#24292f">GitHub</span><p>Repositories &amp; open-source code</p></a>
+    </div>
+  </section>
+
+  <div class="footer">Institut Teknologi Bandung · Kampus Cirebon</div>
+</div>
+
+<!-- Modal detail -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose" aria-label="Tutup">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+  /* ====== DATA FEATURED PROJECTS ====== */
+  const projects = [
+    {
+      title: "🎓 Awardee - Geosoftware x Dompet Dhuafa Jawa Barat",
+      color: "#ec0024",
+      tags: ["Python", "R", "Jul 2026"],
+      desc: "Beasiswa intensif 6 bulan tentang data science spasial.",
+      meta: "Issued by Geosoftware Community and Dompet Dhuafa Jawa Barat · Jul 2026 · Institut Teknologi Bandung",
+      overview: "Awarded a 6-month intensive scholarship co-organized by Geosoftware and Dompet Dhuafa Jawa Barat, focused on advanced spatial data science.",
+      features: [
+        "Hands-on experience in Python and R programming",
+        "Automated spatial data processing and quantitative analysis",
+        "Applying data-driven solutions to urban and regional planning challenges"
+      ]
+    },
+    {
+      title: "🥈 Second Place - Geobiz, IATOGI Fair",
+      color: "#113476",
+      tags: ["Business Case", "NDBI", "NDVI", "LST"],
+      desc: "Juara 2 Business Case Competition nasional, inovasi green roof untuk Urban Heat Island.",
+      meta: "Issued by IA-TOGI · Aug 2025 · Institut Teknologi Bandung",
+      overview: "Second place in the National Business Case Competition 'Geobiz' at the IATOGI Fair, organized by the Indonesian Geography Olympiad Alumni Association. Team: Thoriq Falatehan, Moch. Raka Herdian, and Glorya Christine Ruth.",
+      features: [
+        "Green roof pilot on a place of worship in Simokerto district, Surabaya, to reduce the Urban Heat Island effect",
+        "Proposal: 'Potensi Strategi SEJUK Sebagai Upaya Menghadapi Urban Heat Island di Kecamatan Simokerto, Kota Surabaya'",
+        "Analysis from urban planning, business, and geographic perspectives using NDBI, NDVI, and LST"
+      ]
+    },
+    {
+      title: "📄 Finalis FESTAGAMA UGM",
+      color: "#99824c",
+      tags: ["Scientific Paper", "Finalist"],
+      desc: "Top 6 finalis Scientific Paper Competition Laga Kala Festival UGM.",
+      meta: "Issued by HMTPWK UGM · May 2025 · Institut Teknologi Bandung",
+      overview: "Became a top 6 finalist in the scientific paper competition of the Laga Kala Festival Kota Gadjah Mada (FESTAGAMA), organized by the Himpunan Mahasiswa Teknik Perencanaan Wilayah Kota UGM.",
+      features: [
+        "Team: Thoriq Falatehan, Shaomi Athaya Sugiharto, and Aisyah Amirah"
+      ]
+    },
+    {
+      title: "📄 Finalis Rebana Metropolitan",
+      color: "#ce0041",
+      tags: ["Paper Competition", "Finalist"],
+      desc: "Top 5 finalis Rebana Metropolitan Paper Competition.",
+      meta: "Issued by BP Rebana Metropolitan · Oct 2024 · Institut Teknologi Bandung",
+      overview: "Finalist (Top 5) at the Rebana Metropolitan Paper Competition, held September to October 2024 and organized by the Rebana Metropolitan Agency.",
+      features: [
+        "Competition held September to October 2024"
+      ]
+    }
+  ];
+
+  /* ====== TEMA DARK / LIGHT ====== */
+  const root = document.documentElement;
+  const themeBtn = document.getElementById("themeBtn");
+  function applyTheme(theme) {
+    root.setAttribute("data-theme", theme);
+    themeBtn.textContent = theme === "dark" ? "🌙 Dark" : "☀️ Light";
+  }
+  let saved = null;
+  try { saved = localStorage.getItem("theme"); } catch (e) {}
+  applyTheme(saved || "light");
+  themeBtn.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    applyTheme(next);
+  });
+
+  /* ====== KARTU PROYEK ====== */
+  const grid = document.getElementById("projectGrid");
+  const modal = document.getElementById("modal");
+  const modalContent = document.getElementById("modalContent");
+
+  projects.forEach((p, i) => {
+    const btn = document.createElement("button");
+    btn.className = "card";
+    btn.innerHTML = `<b>${p.title}</b><p>${p.desc}</p>`;
+    btn.addEventListener("click", () => openModal(i));
+    grid.appendChild(btn);
+  });
+
+  function openModal(i) {
+    const p = projects[i];
+    modalContent.innerHTML = `
+      <h3>${p.title}</h3>
+      <p class="meta">${p.meta}</p>
+      <div class="pills">${p.tags.map(t => `<span style="background:${p.color}">${t}</span>`).join("")}</div>
+      <h4>OVERVIEW</h4>
+      <p>${p.overview}</p>
+      <h4>KEY POINTS</h4>
+      <ul>${p.features.map(f => `<li>${f}</li>`).join("")}</ul>
+    `;
+    modal.hidden = false;
+  }
+  function closeModal() { modal.hidden = true; }
+  document.getElementById("modalClose").addEventListener("click", closeModal);
+  modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+</script>
+</body>
+</html>
