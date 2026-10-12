@@ -1,36 +1,66 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Thoriq Falatehan</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#c9d1d9; --muted:#8b949e; --green:#3fb950; }
-  * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--text); font-family:'JetBrains Mono', monospace; line-height:1.6; }
+  :root {
+    --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#c9d1d9;
+    --muted:#8b949e; --green:#3fb950; --white:#f0f6fc; --overlay:rgba(0,0,0,.6);
+  }
+  :root[data-theme="light"] {
+    --bg:#f6f8fa; --card:#ffffff; --border:#d0d7de; --text:#24292f;
+    --muted:#57606a; --green:#1a7f37; --white:#0d1117; --overlay:rgba(0,0,0,.35);
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:'JetBrains Mono', monospace; line-height:1.6; transition:background .2s, color .2s; }
   .wrap { max-width:760px; margin:40px auto; padding:0 20px; }
+  .topbar { display:flex; justify-content:space-between; align-items:center; }
   .prompt { color:var(--muted); margin:0; }
+  .theme-btn { background:var(--card); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 12px; font:inherit; font-size:.85rem; cursor:pointer; }
+  .theme-btn:hover { border-color:var(--green); }
   .name { color:var(--green); font-size:1.8rem; margin:12px 0 4px; }
   .role { color:var(--muted); margin:0; }
   h2 { color:var(--green); font-size:1rem; letter-spacing:2px; margin:0 0 14px; }
   section { border-top:1px solid var(--border); padding:24px 0; }
+  .email { color:var(--green); }
   .tags span { display:inline-block; border:1px solid var(--green); color:var(--green); padding:4px 10px; border-radius:6px; margin:4px 4px 4px 0; font-size:.85rem; }
   ul.goals { list-style:none; padding:0; margin:0; }
   ul.goals li { margin:8px 0; }
+  .intro { color:var(--muted); }
   .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
-  .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; color:inherit; display:block; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; color:inherit; display:block; cursor:pointer; font:inherit; text-align:left; width:100%; }
   .card:hover { border-color:var(--green); }
-  .card b { color:#fff; }
+  .card b { color:var(--white); }
   .card p { color:var(--muted); font-size:.85rem; margin:6px 0 0; }
-  .email { color:var(--green); }
+  .badge { display:inline-block; font-size:.75rem; padding:2px 8px; border-radius:4px; color:#fff; margin-bottom:8px; }
+
+  /* Modal */
+  .modal { position:fixed; inset:0; background:var(--overlay); display:flex; align-items:center; justify-content:center; padding:20px; z-index:100; }
+  .modal[hidden] { display:none; }
+  .modal-box { background:var(--card); border:1px solid var(--border); border-radius:12px; max-width:560px; width:100%; max-height:85vh; overflow-y:auto; padding:24px; position:relative; }
+  .modal-close { position:absolute; top:12px; right:12px; background:none; border:1px solid var(--border); color:var(--text); border-radius:6px; width:32px; height:32px; cursor:pointer; font:inherit; }
+  .modal-close:hover { border-color:var(--green); }
+  .modal-box h3 { color:var(--white); margin:0 0 10px; padding-right:40px; }
+  .modal-box h4 { color:var(--green); font-size:.9rem; letter-spacing:1px; margin:18px 0 6px; }
+  .modal-box p { color:var(--muted); font-size:.9rem; margin:0; }
+  .modal-box ul { color:var(--muted); font-size:.9rem; padding-left:20px; margin:0; }
+  .modal-box img { width:100%; border-radius:8px; border:1px solid var(--border); margin-bottom:12px; }
+  .btn { display:inline-block; margin-top:18px; background:var(--green); color:#fff; padding:8px 16px; border-radius:8px; text-decoration:none; font-size:.9rem; }
+  .btn:hover { opacity:.9; }
   @media (max-width:500px) { .name { font-size:1.4rem; } }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <p class="prompt">$ whoami</p>
+  <div class="topbar">
+    <p class="prompt">$ whoami</p>
+    <button class="theme-btn" id="themeBtn" aria-label="Ganti tema">🌙 Dark</button>
+  </div>
+
   <h1 class="name">Thoriq Falatehan 👋</h1>
   <p class="role">Urban Transportation Enthusiast | Geographic Information System Enthusiast | Practicum Assistant</p>
   <p class="role">Currently developing and learning at Institut Teknologi Bandung, Kampus Cirebon</p>
@@ -40,40 +70,117 @@
   <section>
     <h2>ABOUT</h2>
     <ul class="goals">
-      <li>🔭 I'm currently working on <!-- GANTI: isi proyek Anda --> ...</li>
+      <li>🔭 I'm currently working on <!-- GANTI --> ...</li>
       <li>🌱 I'm currently learning <!-- GANTI --> ...</li>
       <li>👯 I'm looking to collaborate on <!-- GANTI --> ...</li>
       <li>🤔 I'm looking for help with <!-- GANTI --> ...</li>
       <li>💬 Ask me about <!-- GANTI --> ...</li>
-      <li>📫 How to reach me: <!-- GANTI --> thoriqfalatehanworks@gmail.com</li>
+      <li>📫 How to reach me: thoriqfalatehanworks@gmail.com</li>
       <li>⚡ Fun fact: <!-- GANTI --> ...</li>
     </ul>
   </section>
 
   <section>
     <h2>FEATURED PROJECTS</h2>
-    <div class="grid">
-      <a class="card" href="https://github.com/jiburutaru/NAMA-REPO-1"> <!-- GANTI link -->
-        <b>🗺️ Nama Proyek 1</b>
-        <p>Deskripsi singkat proyek, tools yang dipakai, dan hasilnya.</p>
-      </a>
-      <a class="card" href="https://github.com/jiburutaru/NAMA-REPO-2"> <!-- GANTI link -->
-        <b>🚦 Nama Proyek 2</b>
-        <p>Deskripsi singkat proyek, tools yang dipakai, dan hasilnya.</p>
-      </a>
-    </div>
+    <p class="intro">Klik kartu untuk melihat detail proyek.</p>
+    <div class="grid" id="projectGrid"></div>
   </section>
 
   <section>
     <h2>LINKS</h2>
     <div class="grid">
-      <a class="card" href="https://linkedin.com/in/USERNAME"><b>LinkedIn</b><p>Professional profile</p></a> <!-- GANTI -->
-      <a class="card" href="https://github.com/jiburutaru"><b>GitHub</b><p>Repositories & open-source code</p></a>
-      <a class="card" href="https://instagram.com/USERNAME"><b>Instagram</b><p>Daily life & fieldwork</p></a> <!-- GANTI -->
+      <a class="card" href="https://linkedin.com/in/USERNAME" target="_blank" rel="noopener"><b>LinkedIn</b><p>Professional profile</p></a> <!-- GANTI -->
+      <a class="card" href="https://github.com/jiburutaru" target="_blank" rel="noopener"><b>GitHub</b><p>Repositories & open-source code</p></a>
+      <a class="card" href="https://instagram.com/USERNAME" target="_blank" rel="noopener"><b>Instagram</b><p>Daily life & fieldwork</p></a> <!-- GANTI -->
       <a class="card" href="mailto:thoriqfalatehanworks@gmail.com"><b>Email</b><p>thoriqfalatehanworks@gmail.com</p></a>
     </div>
   </section>
 
 </div>
+
+<!-- Modal detail proyek -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose" aria-label="Tutup">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+  /* ====== DATA PROYEK: GANTI ISI DI SINI ====== */
+  const projects = [
+    {
+      title: "🗺️ Nama Proyek 1",            // GANTI
+      tags: ["R", "terra", "QGIS"],          // GANTI
+      color: "#3fb950",                      // warna badge, boleh diubah
+      desc: "Deskripsi singkat proyek.",    // GANTI
+      overview: "Penjelasan lebih lengkap tentang proyek, data yang dipakai, dan hasilnya.", // GANTI
+      features: ["Fitur atau hasil 1", "Fitur atau hasil 2"], // GANTI
+      img: "",                               // isi link gambar, atau kosongkan
+      url: "https://github.com/jiburutaru/NAMA-REPO-1" // GANTI
+    },
+    {
+      title: "🚦 Nama Proyek 2",
+      tags: ["Python", "Analisis"],
+      color: "#58a6ff",
+      desc: "Deskripsi singkat proyek.",
+      overview: "Penjelasan lebih lengkap tentang proyek.",
+      features: ["Fitur atau hasil 1"],
+      img: "",
+      url: "https://github.com/jiburutaru/NAMA-REPO-2"
+    }
+  ];
+
+  /* ====== TEMA DARK / LIGHT ====== */
+  const root = document.documentElement;
+  const themeBtn = document.getElementById("themeBtn");
+
+  function applyTheme(theme) {
+    root.setAttribute("data-theme", theme);
+    themeBtn.textContent = theme === "dark" ? "🌙 Dark" : "☀️ Light";
+  }
+
+  const saved = localStorage.getItem("theme");
+  applyTheme(saved || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"));
+
+  themeBtn.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    localStorage.setItem("theme", next);
+    applyTheme(next);
+  });
+
+  /* ====== KARTU PROYEK ====== */
+  const grid = document.getElementById("projectGrid");
+  const modal = document.getElementById("modal");
+  const modalContent = document.getElementById("modalContent");
+
+  projects.forEach((p, i) => {
+    const btn = document.createElement("button");
+    btn.className = "card";
+    btn.innerHTML = `<b>${p.title}</b><p>${p.desc}</p>`;
+    btn.addEventListener("click", () => openModal(i));
+    grid.appendChild(btn);
+  });
+
+  function openModal(i) {
+    const p = projects[i];
+    modalContent.innerHTML = `
+      ${p.img ? `<img src="${p.img}" alt="${p.title}">` : ""}
+      <h3>${p.title}</h3>
+      <div>${p.tags.map(t => `<span class="badge" style="background:${p.color}">${t}</span>`).join(" ")}</div>
+      <h4>OVERVIEW</h4>
+      <p>${p.overview}</p>
+      <h4>KEY FEATURES</h4>
+      <ul>${p.features.map(f => `<li>${f}</li>`).join("")}</ul>
+      <a class="btn" href="${p.url}" target="_blank" rel="noopener">Buka repository →</a>
+    `;
+    modal.hidden = false;
+  }
+
+  function closeModal() { modal.hidden = true; }
+  document.getElementById("modalClose").addEventListener("click", closeModal);
+  modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+</script>
 </body>
 </html>
