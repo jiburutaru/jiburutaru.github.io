@@ -4,13 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Thoriq Falatehan</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
   /* Palet Arsenal: #ec0024 #ce0041 #113476 #99824c #fefefe */
   :root {
     --bg:#fefefe; --card:#ffffff; --border:#e4e0d6; --text:#1d2b45;
     --muted:#5b6578; --heading:#113476; --accent:#ec0024; --accent-dark:#ce0041;
     --gold:#99824c; --overlay:rgba(17,52,118,.45);
+    --font-head:'Merriweather', Georgia, serif;
+    --font-body:'Lato', system-ui, sans-serif;
   }
   :root[data-theme="dark"] {
     --bg:#0b1f3f; --card:#122b53; --border:#27497a; --text:#e9edf5;
@@ -18,46 +20,47 @@
     --gold:#c9a85f; --overlay:rgba(0,0,0,.6);
   }
   * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--text); font-family:'Plus Jakarta Sans', system-ui, sans-serif; line-height:1.6; transition:background .2s, color .2s; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:var(--font-body); font-size:16px; line-height:1.6; transition:background .2s, color .2s; }
   .wrap { max-width:760px; margin:40px auto; padding:0 20px; }
   .topbar { display:flex; justify-content:space-between; align-items:center; }
-  .rolling { color:var(--heading); font-weight:700; margin:0; min-height:1.6em; transition:opacity .4s; font-size:1rem; }
+  .rolling { font-family:var(--font-head); color:var(--heading); font-weight:700; margin:0; min-height:1.6em; transition:opacity .4s; font-size:1rem; }
   .rolling.fade { opacity:0; }
-  .theme-btn { background:var(--card); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 12px; font:inherit; font-size:.85rem; cursor:pointer; }
+  .theme-btn { background:var(--card); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 12px; font-family:var(--font-body); font-size:.85rem; cursor:pointer; }
   .theme-btn:hover { border-color:var(--accent); }
   .head { display:flex; align-items:center; gap:18px; margin-top:12px; }
-  .avatar { width:72px; height:72px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.3rem; color:#fff; background:var(--accent); border:3px solid var(--gold); }
-  .name { color:var(--heading); font-size:1.7rem; margin:0; font-weight:800; }
-  .role { color:var(--muted); margin:6px 0 0; font-size:.92rem; }
-  .email { color:var(--accent); margin:6px 0 0; font-size:.92rem; font-weight:600; }
-  h2 { color:var(--accent); font-size:1rem; letter-spacing:2px; margin:0 0 14px; font-weight:800; }
+  .avatar { width:72px; height:72px; border-radius:50%; flex-shrink:0; overflow:hidden; border:3px solid var(--gold); background:var(--accent); }
+  .avatar img { width:100%; height:100%; object-fit:cover; display:block; }
+  .name { font-family:var(--font-head); color:var(--heading); font-size:1.7rem; margin:0; font-weight:900; }
+  .role { color:var(--muted); margin:6px 0 0; font-size:.95rem; }
+  .email { color:var(--accent); margin:6px 0 0; font-size:.95rem; font-weight:700; }
+  h2 { font-family:var(--font-head); color:var(--accent); font-size:1rem; letter-spacing:2px; margin:0 0 14px; font-weight:900; }
   section { border-top:2px solid var(--border); padding:24px 0; }
   section:first-of-type { border-top:none; }
-  .pills span, .pill { display:inline-block; color:#fff; padding:4px 10px; border-radius:6px; margin:4px 4px 4px 0; font-size:.82rem; font-weight:700; }
+  .pills span, .pill { display:inline-block; color:#fff; padding:4px 10px; border-radius:6px; margin:4px 4px 4px 0; font-size:.85rem; font-weight:700; }
   ul.goals { list-style:none; padding:0; margin:0; }
   ul.goals li { margin:9px 0; }
   .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
-  .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; color:inherit; display:block; cursor:pointer; font:inherit; text-align:left; width:100%; transition:border-color .15s, transform .15s; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; color:inherit; display:block; cursor:pointer; font-family:var(--font-body); text-align:left; width:100%; transition:border-color .15s, transform .15s; }
   .card:hover { border-color:var(--accent); transform:translateY(-2px); }
-  .card b { color:var(--heading); display:block; margin-bottom:6px; }
-  .card p { color:var(--muted); font-size:.84rem; margin:0; }
+  .card b { font-family:var(--font-head); color:var(--heading); display:block; margin-bottom:6px; font-weight:700; }
+  .card p { color:var(--muted); font-size:.9rem; margin:0; }
   .card .pill { margin-bottom:8px; }
-  .pill-link { display:inline-flex; align-items:center; gap:6px; color:#fff; padding:4px 10px; border-radius:6px; font-size:.82rem; font-weight:700; margin-bottom:8px; }
+  .pill-link { display:inline-flex; align-items:center; gap:6px; color:#fff; padding:4px 10px; border-radius:6px; font-size:.85rem; font-weight:700; margin-bottom:8px; }
   .pill-link img { width:16px; height:16px; filter:brightness(0) invert(1); }
-  .intro { color:var(--muted); font-size:.9rem; }
+  .intro { color:var(--muted); font-size:.95rem; }
   /* Modal */
   .modal { position:fixed; inset:0; background:var(--overlay); display:flex; align-items:center; justify-content:center; padding:20px; z-index:100; }
   .modal[hidden] { display:none; }
   .modal-box { background:var(--card); border:1px solid var(--border); border-top:4px solid var(--accent); border-radius:12px; max-width:580px; width:100%; max-height:85vh; overflow-y:auto; padding:24px; position:relative; }
-  .modal-close { position:absolute; top:12px; right:12px; background:none; border:1px solid var(--border); color:var(--text); border-radius:6px; width:32px; height:32px; cursor:pointer; font:inherit; }
+  .modal-close { position:absolute; top:12px; right:12px; background:none; border:1px solid var(--border); color:var(--text); border-radius:6px; width:32px; height:32px; cursor:pointer; font-family:var(--font-body); }
   .modal-close:hover { border-color:var(--accent); }
-  .modal-box h3 { color:var(--heading); margin:0 0 10px; padding-right:40px; font-size:1.05rem; font-weight:800; }
-  .modal-box h4 { color:var(--accent); font-size:.85rem; letter-spacing:1px; margin:18px 0 6px; font-weight:800; }
-  .modal-box p, .modal-box li { color:var(--muted); font-size:.9rem; }
+  .modal-box h3 { font-family:var(--font-head); color:var(--heading); margin:0 0 10px; padding-right:40px; font-size:1.05rem; font-weight:900; }
+  .modal-box h4 { font-family:var(--font-head); color:var(--accent); font-size:.85rem; letter-spacing:1px; margin:18px 0 6px; font-weight:900; }
+  .modal-box p, .modal-box li { color:var(--muted); font-size:.95rem; }
   .modal-box p { margin:0; }
   .modal-box ul { padding-left:20px; margin:0; }
-  .meta { color:var(--gold); font-size:.82rem; margin:0 0 12px; font-weight:600; }
-  .footer { text-align:center; color:var(--muted); font-size:.82rem; border-top:2px solid var(--border); padding-top:24px; }
+  .meta { color:var(--gold); font-size:.85rem; margin:0 0 12px; font-weight:700; }
+  .footer { text-align:center; color:var(--muted); font-size:.85rem; border-top:2px solid var(--border); padding-top:24px; }
   /* Tombol ke atas */
   .to-top { position:fixed; right:20px; bottom:20px; width:44px; height:44px; border-radius:50%; border:1px solid var(--border); background:var(--card); color:var(--accent); cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.15); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .25s, border-color .15s; z-index:50; }
   .to-top.show { opacity:1; pointer-events:auto; }
@@ -75,7 +78,7 @@
   </div>
 
   <div class="head">
-    <div class="avatar">TF</div>
+    <div class="avatar"><img src="foto.jpg" alt="Foto Thoriq Falatehan"></div>
     <div>
       <h1 class="name">Thoriq Falatehan</h1>
       <p class="role">Urban Transportation Enthusiast | Geographic Information System for Planner Researcher | Project Assistant</p>
@@ -133,7 +136,7 @@
     </div>
   </section>
 
-  <div class="footer">Institut Teknologi Bandung · Kampus Cirebon</div>
+  <div class="footer">Thoriq Falatehan / Jiburutaru</div>
 </div>
 
 <!-- Modal detail -->
